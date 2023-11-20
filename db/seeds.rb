@@ -29,19 +29,32 @@ categories_data.each do |c|
 
   categories.save
   puts "Category not saved" unless categories&.valid?
-  puts "#{c}" # weird
+  puts "#{c}" # weird# end
+  # puts "#{categories_data}"
+  puts "Created #{Category.count} categories."
 end
-# puts "#{categories_data}"
-puts "Created #{Category.count} categories."
 
 products_data.each do |p|
-  id = p["category_id"].to_i + 1
-  category = Category.find(id)
   products = Product.new(product_name: p["product_name"], price: p["price"],
                          description: p["description"], stock_quantity: p["stock_quantity"], image_file: p["image"])
-  products.categories = category
-  # puts "#{p['product_name']}"
-  products.save
+
+  if p["product_name"].include?("Mouse")
+    category = Category.find(1)
+    products.categories = category
+    products.save
+  elsif p["product_name"].include?("Keyboard")
+    category = Category.find(2)
+    products.categories = category
+    products.save
+  elsif p["product_name"].include?("Monitor")
+    category = Category.find(3)
+    products.categories = category
+    products.save
+  elsif p["product_name"].include?("Headset")
+    category = Category.find(4)
+    products.categories = category
+    products.save
+  end
   puts "Product not saved" unless products&.valid?
   puts p["product_name"]
 end
