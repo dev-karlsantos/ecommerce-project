@@ -19,7 +19,7 @@ ActiveAdmin.register Product do
   form do |f|
     f.semantic_errors
     f.inputs 'Product Details' do
-      f.input :categories_id, as: :select, collection: Category.all.map { |cat| [cat.category_name, cat.id] }
+      f.input :category_id, as: :select, collection: Category.all.map { |cat| [cat.category_name, cat.id] }
       f.input :product_name
       f.input :price
       f.input :description
@@ -34,8 +34,8 @@ ActiveAdmin.register Product do
   index do
     selectable_column
     id_column
-    column :categories do |product|
-      product.categories.category_name if product.categories
+    column :category do |product|
+      product.category.category_name if product.category
     end
     column :product_name
     column :price
@@ -47,8 +47,8 @@ ActiveAdmin.register Product do
   show do
     attributes_table do
       row :id
-      row :categories do |product|
-        product.categories.category_name if product.categories
+      row :category do |product|
+        product.category.category_name if product.category
       end
       row :product_name
       row :price
