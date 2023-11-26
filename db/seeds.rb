@@ -58,3 +58,4 @@ products_data.each do |p|
   puts "Product not saved" unless products&.valid?
   puts p["product_name"]
 end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
