@@ -36,7 +36,7 @@ end
 
 products_data.each do |p|
   products = Product.new(product_name: p["product_name"], price: p["price"],
-                         description: p["description"], stock_quantity: p["stock_quantity"], image_file: p["image"])
+                         description: p["description"], stock_quantity: p["stock_quantity"])
 
   if p["product_name"].include?("Mouse")
     category = Category.find(1)
