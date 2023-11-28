@@ -1,3 +1,13 @@
+.button {
+  display:inline;
+  margin-top: 10px;
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  background-color: none;
+  background-image: none;
+}
 .product-cards {
   display: flex;
   flex-wrap: wrap;
@@ -24,6 +34,13 @@ body {
   margin-left: 10px;
 }
 
+.username {
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
 .navbar {
   background-color: #014C8A;
 }
@@ -37,6 +54,7 @@ body {
 
 .navbar li {
   float: left;
+  color: white;
 }
 
 .navbar a {
@@ -52,7 +70,6 @@ body {
 
 .navbar a:hover {
   background-color: #A6A6A6;
-  padding: 15px;
 }
 
 .navbar:after {
