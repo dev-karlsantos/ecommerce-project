@@ -1,9 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @category %>
-
 <div>
-  <%= link_to "Edit this category", edit_category_path(@category) %> |
+  <% @products.each do |product| %>
+      <div class="col-md-3">
+        <div class="card-body">
+            <%= link_to product.product_name, product_path(product) %>
+        </div>
+      </div>
+  <% end %>
   <%= link_to "Back to categories", categories_path %>
 
   <%= button_to "Destroy this category", @category, method: :delete %>

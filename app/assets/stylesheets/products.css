@@ -1,0 +1,20 @@
+.product-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.product-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  max-width: 300px;
+}
+
+a.product-card {
+  text-decoration: none;
+  color: black;
+}
+
+.center-image {
+  text-align: center;
+}

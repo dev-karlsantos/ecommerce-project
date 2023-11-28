@@ -1,7 +1,11 @@
 <div id="<%= dom_id product %>">
+  <p class="center-image">
+    <img src="<%= product.image_file %>"/>
+  </p>
+
   <p>
     <strong>Categories:</strong>
-    <%= product.categories_id %>
+    <%= product.category.category_name %>
   </p>
 
   <p>
@@ -24,9 +28,5 @@
     <%= product.stock_quantity %>
   </p>
 
-  <p>
-    <strong>Image file:</strong>
-    <%= product.image_file %>
-  </p>
 
 </div>

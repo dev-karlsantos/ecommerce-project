@@ -2,12 +2,11 @@
 
 <h1>Products</h1>
 
-<div id="products">
+<div class="product-cards">
   <% @products.each do |product| %>
+  <a href="<%= product_path(product) %>" class="product-card">
     <%= render product %>
-    <p>
-      <%= link_to "Show this product", product %>
-    </p>
+  </a>
   <% end %>
 </div>
 
