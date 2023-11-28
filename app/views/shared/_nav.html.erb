@@ -1,6 +1,13 @@
-<nav>
+<nav class="navbar">
   <ul>
     <li><%= link_to 'Products', root_path%></li>
     <li><%= link_to 'Categories', categories_path%></li>
+    <li>
+      <%= form_tag(search_path, method: :get, class: "search-form") do %>
+        <%= text_field_tag(:search, params[:search], class: "search-bar", placeholder: 'Search for products...') %>
+        <%= select_tag(:category, options_for_select(Category.all.map { |c| [c.category_name, c.id] }, params[:category]), include_blank: 'Select a category') %>
+        <%= submit_tag('Search') %>
+      <% end %>
+    </li>
   </ul>
 </nav>

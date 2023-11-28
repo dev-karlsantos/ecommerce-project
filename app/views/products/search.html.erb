@@ -1,0 +1,14 @@
+<% if @products_in.present? %>
+  <% if @products_in.any? %>
+    <div class="product-cards">
+      <% @products_in.each do |product| %>
+        <a href="<%= product_path(product) %>" class="product-card">
+          <%= render product %>
+        </a>
+      <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <h1>No record has been found.</h1>
+  <p>Please try a different keyword or select a different category.</p>
+<% end %>
