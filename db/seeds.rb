@@ -40,22 +40,25 @@ products_data.each do |p|
 
   if p["product_name"].include?("Mouse")
     category = Category.find(1)
-    products.categories = category
+    products.category = category
     products.save
   elsif p["product_name"].include?("Keyboard")
     category = Category.find(2)
-    products.categories = category
+    products.category = category
     products.save
   elsif p["product_name"].include?("Monitor")
     category = Category.find(3)
-    products.categories = category
+    products.category = category
     products.save
   elsif p["product_name"].include?("Headset")
     category = Category.find(4)
-    products.categories = category
+    products.category = category
     products.save
   end
   puts "Product not saved" unless products&.valid?
   puts p["product_name"]
 end
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+if Rails.env.development?
+  AdminUser.create!(email: "admin@example.com", password: "password",
+                    password_confirmation: "password")
+end
