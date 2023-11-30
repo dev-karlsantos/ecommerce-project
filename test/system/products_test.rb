@@ -16,7 +16,7 @@ class ProductsTest < ApplicationSystemTestCase
 
     fill_in "Categories", with: @product.categories_id
     fill_in "Description", with: @product.description
-    fill_in "Image file", with: @product.image_file
+    fill_in "Image file", with: @product.image
     fill_in "Price", with: @product.price
     fill_in "Product name", with: @product.product_name
     fill_in "Stock quantity", with: @product.stock_quantity
@@ -32,7 +32,7 @@ class ProductsTest < ApplicationSystemTestCase
 
     fill_in "Categories", with: @product.categories_id
     fill_in "Description", with: @product.description
-    fill_in "Image file", with: @product.image_file
+    fill_in "Image file", with: @product.image
     fill_in "Price", with: @product.price
     fill_in "Product name", with: @product.product_name
     fill_in "Stock quantity", with: @product.stock_quantity

@@ -1,6 +1,6 @@
 <div id="<%= dom_id product %>">
   <p class="center-image">
-    <img src="<%= product.image_file %>"/>
+    <%= image_tag product.image if product.image.attached? %>
   </p>
 
   <p>

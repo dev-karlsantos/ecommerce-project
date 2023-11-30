@@ -1,16 +1,15 @@
 ActiveAdmin.register Product do
-
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :categories_id, :product_name, :price, :description, :stock_quantity, :image_file
+  permit_params :categories_id, :product_name, :price, :description, :stock_quantity, :image
   #
   # or
   #
   # permit_params do
-  #   permitted = [:categories_id, :product_name, :price, :description, :stock_quantity, :image_file]
+  #   permitted = [:categories_id, :product_name, :price, :description, :stock_quantity, :image]
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
@@ -18,16 +17,18 @@ ActiveAdmin.register Product do
 
   form do |f|
     f.semantic_errors
-    f.inputs 'Product Details' do
-      f.input :category_id, as: :select, collection: Category.all.map { |cat| [cat.category_name, cat.id] }
+    f.inputs "Product Details" do
+      f.input :category_id, as: :select, collection: Category.all.map { |cat|
+                                                       [cat.category_name, cat.id]
+                                                     }
       f.input :product_name
       f.input :price
       f.input :description
       f.input :stock_quantity
-      f.input :image_file, as: :file,
-                      #hint: f.object.image.present? ? image_tag(f.object.image.variant(resize_to_limit: [500, 500])) : ''
-                      hint: f.object.image_file.present? ? image_tag(f.object.image_file, size:"150x150"): ""
-                    end
+      f.input :image, as:   :file,
+                      # hint: f.object.image.present? ? image_tag(f.object.image.variant(resize_to_limit: [500, 500])) : ''
+                      hint: f.object.image.present? ? image_tag(f.object.image, size: "150x150") : ""
+    end
     f.actions
   end
 
@@ -54,12 +55,12 @@ ActiveAdmin.register Product do
       row :price
       row :description
       row :stock_quantity
-      row :image_file do |product|
+      row :image do |product|
         ActiveStorage::Current.url_options = {
           host: request.base_url
           # add other relevant options if needed
         }
-        image_tag product.image_file.url, size: "150x150" if product.image_file.present?
+        image_tag product.image.url, size: "150x150" if product.image.present?
       end
     end
     active_admin_comments
