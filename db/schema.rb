@@ -77,10 +77,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_30_080432) do
     t.float "price"
     t.text "description"
     t.integer "stock_quantity"
-    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image_file"
+    t.string "image"
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
