@@ -7,6 +7,8 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require "csv"
 
+Province.delete_all
+require_relative "provinces_seeds" if ENV["SEED_PROVINCES"]
 Product.delete_all
 Category.delete_all
 
@@ -58,7 +60,8 @@ products_data.each do |p|
   puts "Product not saved" unless products&.valid?
   puts p["product_name"]
 end
-if Rails.env.development?
-  AdminUser.create!(email: "admin@example.com", password: "password",
-                    password_confirmation: "password")
-end
+
+# if Rails.env.development?
+#   AdminUser.create!(email: "admin@example.com", password: "password",
+#                     password_confirmation: "password")
+# end

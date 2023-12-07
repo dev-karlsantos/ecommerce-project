@@ -24,8 +24,6 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
-gem 'mini_magick'
-
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
@@ -51,6 +49,8 @@ gem "sassc-rails"
 gem "image_processing", "~> 1.2"
 gem "activeadmin", "2.11"
 gem "devise", '>= 4.0'
+gem 'mini_magick'
+gem 'stripe'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
