@@ -1,0 +1,41 @@
+<!-- app/views/carts/show.html.erb -->
+
+<h1>Your Shopping Cart</h1>
+
+<% if @cart_items.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |product_id, item| %>
+        <% product = Product.find(product_id)%>
+        <tr>
+          <td><%= product.product_name %></td>
+          <td>
+          <div class="quantity_buttons">
+            <%= form_with(url: remove_from_cart_cart_path(@cart, id: product_id), method: :post) do |form| %>
+                <%= form.submit '-' %>
+            <% end %>
+                <span class="quantity"><%= item['quantity'] %></span>
+            <%= form_with(url: add_to_cart_cart_path(@cart, id: product_id), method: :post) do |form| %>
+              <%= form.submit '+' %>
+            <% end %>
+          </div>
+          </td>
+          <td><%= number_to_currency(item['price']) %></td>
+          <td><%= number_to_currency(item['quantity'] * item['price']) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Your shopping cart is empty.</p>
+<% end %>
+
+<%= link_to 'Continue Shopping', root_path %>
