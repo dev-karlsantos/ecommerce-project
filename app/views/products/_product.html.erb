@@ -1,31 +1,18 @@
 <div id="<%= dom_id product %>">
   <p class="center-image">
-    <%= image_tag product.image if product.image.attached? %>
+    <% if product.image.attached? %>
+      <%= image_tag product.image, width: 255, height: 200 %>
+    <% else %>
+      <%= "No image attached" %>
+    <% end %>
   </p>
 
   <p>
-    <strong>Categories:</strong>
-  <%= product.category.category_name %>
-  </p>
-
-  <p>
-    <strong>Product name:</strong>
-    <%= product.product_name %>
+    <strong><%= product.product_name %></strong>
   </p>
 
   <p>
     <strong>Price:</strong>
-    <%= product.price %>
+    $<%= product.price %>
   </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= product.description %>
-  </p>
-
-  <p>
-    <strong>Stock quantity:</strong>
-    <%= product.stock_quantity %>
-  </p>
-
 </div>

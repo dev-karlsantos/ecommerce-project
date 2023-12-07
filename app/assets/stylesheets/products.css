@@ -11,13 +11,11 @@
 .product-cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
 }
 
 .product-card {
   border: 1px solid #ccc;
   padding: 10px;
-  margin-top: 10px;
   max-width: 276px;
 }
 

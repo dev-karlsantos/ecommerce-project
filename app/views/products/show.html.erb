@@ -1,9 +1,43 @@
 <p style="color: green"><%= notice %></p>
+  <p class="center-image">
+    <% if @product.image.attached? %>
+      <%= image_tag @product.image, width: 255, height: 200 %>
+    <% else %>
+      <%= "No image attached" %>
+    <% end %>
 
-<%= render @product %>
+  </p>
+
+  <p>
+    <strong>Categories:</strong>
+  <%= @product.category.category_name %>
+  </p>
+
+  <p>
+    <strong>Product name:</strong>
+    <%= @product.product_name %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= @product.price %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= @product.description %>
+  </p>
+
+  <p>
+    <strong>Stock quantity:</strong>
+    <%= @product.stock_quantity %>
+  </p>
+
+
 
 <div>
-  <%# <%= link_to "Edit this product", edit_product_path(@product) | %>
+  <%# <%= link_to "Edit this product", edit_product_path(@product) %>
+  <div class='quantity_buttons'>
   <%= form_with(url: add_to_cart_cart_path(@cart, id: @product.id), method: :post) do |form| %>
     <%= form.submit 'Add to Cart' %>
   <% end %>
@@ -11,8 +45,7 @@
   <%= form_with(url: remove_from_cart_cart_path(@cart, id: @product.id), method: :post) do |form| %>
     <%= form.submit 'Remove from Cart' %>
   <% end %>
+  </div>
 
   <%= link_to "Back to products", products_path %>
-
-  <%# <%= button_to "Destroy this product", @product, method: :delete %>
 </div>
