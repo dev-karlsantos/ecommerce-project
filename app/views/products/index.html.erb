@@ -3,9 +3,16 @@
 
 <div class="product-cards">
   <% @products.each do |product| %>
-  <a href="<%= product_path(product) %>" class="product-card">
+  <div class="product-card">
+    <p class="center-image">
+      <% if product.image.attached? %>
+      <a href="<%= product_path(product) %>"><%= image_tag product.image, width: 255, height: 200 %></a>
+      <% else %>
+        <%= "No image attached" %>
+      <% end %>
+    </p>
     <%= render product %>
-  </a>
+  </div>
   <% end %>
 </div>
 

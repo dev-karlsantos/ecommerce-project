@@ -2,6 +2,7 @@ class CartsController < ApplicationController
   before_action :authenticate_user!, only: %i[show add_to_cart remove_from_cart]
 
   def show
+    @provinces = Province.pluck(:province_name, :id)
     @cart_items = session[:cart] || {}  # Assuming cart information is stored in the session
 
     # You may want to retrieve additional information about the products in the cart
@@ -14,17 +15,17 @@ class CartsController < ApplicationController
 
   def add_to_cart
     product = find_product
-    puts "Before Cart: #{session[:cart]}"
+    # puts "Before Cart: #{session[:cart]}" Debugging Purposes
     update_cart(product, 1)
-    puts "After Cart: #{session[:cart]}"
+    # puts "After Cart: #{session[:cart]}"
     redirect_to_cart
   end
 
   def remove_from_cart
     product = find_product
-    puts "Before Cart: #{session[:cart]}"
+    # puts "Before Cart: #{session[:cart]}"
     update_cart(product, -1)
-    puts "After Cart: #{session[:cart]}"
+    # puts "After Cart: #{session[:cart]}"
     redirect_to_cart
   end
 

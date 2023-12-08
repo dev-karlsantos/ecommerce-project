@@ -1,11 +1,4 @@
 <div id="<%= dom_id product %>">
-  <p class="center-image">
-    <% if product.image.attached? %>
-      <%= image_tag product.image, width: 255, height: 200 %>
-    <% else %>
-      <%= "No image attached" %>
-    <% end %>
-  </p>
 
   <p>
     <strong><%= product.product_name %></strong>
@@ -15,4 +8,9 @@
     <strong>Price:</strong>
     $<%= product.price %>
   </p>
+  <div class='quantity_buttons'>
+  <%= form_with(url: add_to_cart_cart_path(@cart, id: product.id), method: :post) do |form| %>
+    <%= form.submit 'Add to Cart' %>
+  <% end %>
+  </div>
 </div>

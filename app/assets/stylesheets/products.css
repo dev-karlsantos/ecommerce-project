@@ -8,6 +8,7 @@
   background-color: none;
   background-image: none;
 }
+
 .product-cards {
   display: flex;
   flex-wrap: wrap;
@@ -90,4 +91,37 @@ body {
 .search-form {
   margin-left: auto;
   padding:10px;
+}
+
+.shipping-form {
+  border: 1px solid #ccc; /* Add your preferred border style and color */
+  padding: 15px; /* Optional: Add some padding for better visual appearance */
+}
+
+/* app/assets/stylesheets/orders.css */
+
+.field-wrapper {
+  overflow: hidden; /* Clear floats */
+}
+
+.field {
+  float: left;
+  width: 25%;
+  margin-right: 5%;
+  margin-bottom: 1em;
+  display: flex; /* Use flexbox for horizontal alignment */
+  align-items: center; /* Align items horizontally */
+}
+
+.actions {
+  clear: both;
+  margin-top: 1em;
+}
+
+.field select {
+  width: 50%;
+}
+
+.field input[type="checkbox"] {
+  margin-right: 0.5em; /* Adjust margin as needed */
 }
