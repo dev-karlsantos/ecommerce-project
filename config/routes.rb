@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/pages/:title', to: 'pages#show', as: 'about_page'
+  get '/pages/:title', to: 'pages#show', as: 'contact_page'
   get "orders/new"
   get "orders/create"
   get "ordered_products/index"
@@ -6,6 +8,7 @@ Rails.application.routes.draw do
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  resources :pages
   resources :products
   resources :categories
   resources :carts do
