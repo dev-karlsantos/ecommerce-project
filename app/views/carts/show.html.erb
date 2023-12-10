@@ -1,0 +1,84 @@
+<!-- app/views/carts/show.html.erb -->
+
+<h1>Shopping Cart</h1>
+
+<% if @cart_items.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |product_id, item| %>
+        <% product = Product.find(product_id)%>
+        <tr>
+          <td><%= product.product_name %></td>
+          <td>
+          <div class="quantity_buttons">
+            <%= form_with(url: remove_from_cart_cart_path(@cart, id: product_id), method: :post) do |form| %>
+                <%= form.submit '-' %>
+            <% end %>
+                <span class="quantity"><%= item['quantity'] %></span>
+            <%= form_with(url: add_to_cart_cart_path(@cart, id: product_id), method: :post) do |form| %>
+              <%= form.submit '+' %>
+            <% end %>
+          </div>
+          </td>
+          <td><%= number_to_currency(item['price'].to_f) %></td>
+          <td><%= number_to_currency(item['quantity'].to_i * item['price'].to_f) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= form_with url:checkout_create_path, class: 'shipping-form', remote: true, data: {turbo: false} do |f| %>
+  <h2>Shipping Details</h2>
+
+  <!-- Street Address -->
+  <div class="field">
+    <%= f.label :street_address %>
+    <%= f.text_field :street_address, required: true %>
+  </div>
+
+  <!-- Postal Code -->
+  <div class="field">
+    <%= f.label :postal_code %>
+    <%= f.text_field :postal_code, required: true %>
+  </div>
+
+  <!-- City -->
+  <div class="field">
+    <%= f.label :city %>
+    <%= f.text_field :city, required: true %>
+  </div>
+
+  <!-- Country Dropdown -->
+  <div class="field">
+    <%= f.label :country %>
+    <%= f.select :country, options_for_select(["Canada"]), prompt: 'Select Country', required: true %>
+  </div>
+
+  <!-- Province Dropdown -->
+  <div class="field">
+    <%= f.label :province %>
+    <%= f.select :province, options_for_select(@provinces), prompt: 'Select Province', required: true %>
+  </div>
+
+    <!-- Save address for future orders Checkbox -->
+  <div class="field" style="display: flex; align-items: center;">
+    <%= f.check_box :save_address %>
+    <%= f.label :save_address, "Save address for future orders", style: "margin-right: 1em;" %>
+  </div>
+
+  <div class="actions">
+    <%= f.button 'Proceed to Checkout' %>
+  </div>
+  <% end %>
+<% else %>
+  <p>Your shopping cart is empty.</p>
+<% end %>
+
+<%= link_to 'Continue Shopping', root_path %>

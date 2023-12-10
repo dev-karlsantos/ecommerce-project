@@ -1,0 +1,8 @@
+.quantity_buttons {
+  display: flex;
+  align-items: center;
+}
+
+.quantity {
+  margin: 0 5px;
+}

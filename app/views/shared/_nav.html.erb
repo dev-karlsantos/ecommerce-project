@@ -12,13 +12,16 @@
         <%= submit_tag('Search') %>
       <% end %>
     </li>
+    <div class="quantity_buttons">
     <% if !user_signed_in? %>
       <li><a href="/users/sign_in">Login</a></li>
       <li><%= link_to 'Register', new_user_registration_path %></li>
     <% else %>
+      <%= link_to 'Shopping Cart', cart_path(current_user), class: 'button' %>
       <%= form_tag(destroy_user_session_path, method: :delete) do %>
         <%= submit_tag 'Logout', class: 'button' %>
       <% end %>
     <% end %>
+    </div>
   </ul>
 </nav>
