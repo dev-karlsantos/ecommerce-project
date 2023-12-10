@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get '/pages/:title', to: 'pages#show', as: 'about_page'
-  get '/pages/:title', to: 'pages#show', as: 'contact_page'
+  get '/pages/:title', to: 'pages#show', as: 'about_page' #about page route
+  get '/pages/:title', to: 'pages#show', as: 'contact_page' #contact page route
   get "orders/new"
   get "orders/create"
   get "ordered_products/index"
