@@ -5,6 +5,9 @@
     <% end %>
     <li><%= link_to 'Products', root_path %></li>
     <li><%= link_to 'Categories', categories_path %></li>
+    <li><%= link_to 'About', about_page_path('About Page') %></li>
+    <li><%= link_to 'Contact', contact_page_path('Contact Page') %></li>
+
     <li>
       <%= form_tag(search_path, method: :get, class: "search-form") do %>
         <%= text_field_tag(:search, params[:search], class: "search-bar", placeholder: 'Search for products...') %>
