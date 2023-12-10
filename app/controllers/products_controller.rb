@@ -57,6 +57,9 @@ class ProductsController < ApplicationController
         end
         format.json { render :show, status: :created, location: @product }
       else
+        # format.html { render :new, status: :unprocessable_entity }
+        # format.json { render json: @product.errors, status: :unprocessable_entity }
+        Rails.logger.debug(@product.errors.full_messages)  # Add this line for debugging
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
@@ -97,7 +100,7 @@ class ProductsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def product_params
-    params.require(:product).permit(:categories_id, :product_name, :price, :description,
+    params.require(:product).permit(:category_id, :product_name, :price, :description,
                                     :stock_quantity, :image)
   end
 end
