@@ -37,7 +37,9 @@ class CheckoutController < ApplicationController
 
   def success
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
-    @payment_intent = Stripe::Payment.retrieve(@session.payment_intent)
+    @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
+    session.delete(:cart)
+    redirect_to root_path
   end
 
   def cancel

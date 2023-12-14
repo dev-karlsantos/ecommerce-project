@@ -35,50 +35,91 @@
     </tbody>
   </table>
   <%= form_with url:checkout_create_path, class: 'shipping-form', remote: true, data: {turbo: false} do |f| %>
-  <h2>Shipping Details</h2>
+    <h2>Shipping Details</h2>
 
-  <!-- Street Address -->
-  <div class="field">
-    <%= f.label :street_address %>
-    <%= f.text_field :street_address, required: true %>
-  </div>
+    <!-- Street Address -->
+    <% if !@username.present? %>
+      <div class="field">
+        <%= f.label :street_address %>
+        <%= f.text_field :street_address, required: true %>
+      </div>
 
-  <!-- Postal Code -->
-  <div class="field">
-    <%= f.label :postal_code %>
-    <%= f.text_field :postal_code, required: true %>
-  </div>
+      <!-- Postal Code -->
+      <div class="field">
+        <%= f.label :postal_code %>
+        <%= f.text_field :postal_code, required: true %>
+      </div>
 
-  <!-- City -->
-  <div class="field">
-    <%= f.label :city %>
-    <%= f.text_field :city, required: true %>
-  </div>
+      <!-- City -->
+      <div class="field">
+        <%= f.label :city %>
+        <%= f.text_field :city, required: true %>
+      </div>
 
-  <!-- Country Dropdown -->
-  <div class="field">
-    <%= f.label :country %>
-    <%= f.select :country, options_for_select(["Canada"]), prompt: 'Select Country', required: true %>
-  </div>
+      <!-- Country Dropdown -->
+      <div class="field">
+        <%= f.label :country %>
+        <%= f.select :country, options_for_select(["Canada"]), prompt: 'Select Country', required: true %>
+      </div>
 
-  <!-- Province Dropdown -->
-  <div class="field">
-    <%= f.label :province %>
-    <%= f.select :province, options_for_select(@provinces), prompt: 'Select Province', required: true %>
-  </div>
+      <!-- Province Dropdown -->
+      <div class="field">
+        <%= f.label :province %>
+        <%= f.select :province, options_for_select(@provinces), prompt: 'Select Province', required: true %>
+      </div>
 
-    <!-- Save address for future orders Checkbox -->
-  <div class="field" style="display: flex; align-items: center;">
-    <%= f.check_box :save_address %>
-    <%= f.label :save_address, "Save address for future orders", style: "margin-right: 1em;" %>
-  </div>
+        <!-- Save address for future orders Checkbox -->
+      <div class="field" style="display: flex; align-items: center;">
+        <%= f.check_box :save_address %>
+        <%= f.label :save_address, "Save address for future orders", style: "margin-right: 1em;" %>
+      </div>
 
-  <div class="actions">
-    <%= f.button 'Proceed to Checkout' %>
-  </div>
+      <div class="actions">
+        <%= f.button 'Proceed to Checkout' %>
+      </div>
+    <% else %>
+        <div class="field">
+        <%= f.label :street_address %>
+        <%= f.text_field :street_address,value: @user.address, required: true %>
+      </div>
+
+      <!-- Postal Code -->
+      <div class="field">
+        <%= f.label :postal_code %>
+        <%= f.text_field :postal_code, value: @user.postal_code, required: true %>
+      </div>
+
+      <!-- City -->
+      <div class="field">
+        <%= f.label :city %>
+        <%= f.text_field :city, value: @user.city, required: true %>
+      </div>
+
+      <!-- Country Dropdown -->
+      <div class="field">
+        <%= f.label :country %>
+        <%= f.select :country, options_for_select(["Canada"], @user.country), prompt: 'Select Country', required: true %>
+      </div>
+
+      <!-- Province Dropdown -->
+      <div class="field">
+        <%= f.label :province %>
+        <%= f.select :province, options_for_select(@provinces, @user.province_id), prompt: 'Select Province', required: true %>
+      </div>
+
+        <!-- Save address for future orders Checkbox -->
+      <div class="field" style="display: flex; align-items: center;">
+        <%= f.check_box :save_address %>
+        <%= f.label :save_address, "Save address for future orders", style: "margin-right: 1em;" %>
+      </div>
+
+      <div class="actions">
+        <%= f.button 'Proceed to Checkout' %>
+      </div>
+    <% end %>
   <% end %>
+  <%= link_to 'Continue Shopping', root_path %>
 <% else %>
   <p>Your shopping cart is empty.</p>
 <% end %>
 
-<%= link_to 'Continue Shopping', root_path %>

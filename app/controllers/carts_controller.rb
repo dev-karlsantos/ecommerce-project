@@ -3,6 +3,7 @@ class CartsController < ApplicationController
 
   def show
     @provinces = Province.pluck(:province_name, :id)
+    @user = User.find_by(username: current_user.username)
     @cart_items = session[:cart] || {}  # Assuming cart information is stored in the session
 
     # You may want to retrieve additional information about the products in the cart
